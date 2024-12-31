@@ -4,6 +4,7 @@ import { NestExpressApplication } from '@nestjs/platform-express';
 import { AllExceptionsFilter } from './filters/all-exception.filter';
 import { ValidationPipe } from '@nestjs/common';
 import { HttpExceptionFilter } from './filters/http-exception.filter';
+import { options } from './configs/typeorm.config';
 
 async function bootstrap() {
     const app = await NestFactory.create<NestExpressApplication>(AppModule);
@@ -14,6 +15,7 @@ async function bootstrap() {
     app.useGlobalPipes(new ValidationPipe());
 
     await app.listen(process.env.PORT ?? 8080);
+
     console.log(`Server is running at ${process.env.HOST}:${process.env.PORT}`);
 }
 

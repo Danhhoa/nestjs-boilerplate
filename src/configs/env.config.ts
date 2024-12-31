@@ -1,5 +1,10 @@
+import * as dotenv from 'dotenv';
+
+dotenv.config()
+
 const envConfig = () => ({
     app: {
+        nodeEnv: process.env.NODE_ENV,
         host: process.env.HOST,
         port: process.env.PORT || 8080,
     },
