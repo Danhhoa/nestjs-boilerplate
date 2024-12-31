@@ -11,7 +11,7 @@ import { ApiModule } from './apis/api.module';
         ConfigModule.forRoot({
             isGlobal: true,
             load: [envConfig],
-            // cache: true,
+            cache: true,
         }),
         DatabaseModule,
         ApiModule,

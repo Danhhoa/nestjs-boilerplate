@@ -1,0 +1,5 @@
+const USER_REPOSITORY = 'USER_REPOSITORY'
+
+export {
+    USER_REPOSITORY
+}
