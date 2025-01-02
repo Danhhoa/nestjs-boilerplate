@@ -1,18 +1,11 @@
-import { HttpAdapterHost, NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
+import { NestFactory } from '@nestjs/core';
 import { NestExpressApplication } from '@nestjs/platform-express';
-import { AllExceptionsFilter } from './filters/all-exception.filter';
-import { ValidationPipe } from '@nestjs/common';
-import { HttpExceptionFilter } from './filters/http-exception.filter';
+import { AppModule } from './app.module';
 
 async function bootstrap() {
-    const app = await NestFactory.create<NestExpressApplication>(AppModule);
+    const app = await NestFactory.create<NestExpressApplication>(AppModule, { logger: ['log', 'fatal'] });
 
-    // Catch all unhandle errors
-    const { httpAdapter } = app.get(HttpAdapterHost);
-    app.useGlobalFilters(new AllExceptionsFilter(httpAdapter));
-    app.useGlobalPipes(new ValidationPipe());
-    app.setGlobalPrefix("/api/v1")
+    app.setGlobalPrefix('/api/v1');
 
     await app.listen(process.env.PORT ?? 8080);
 
